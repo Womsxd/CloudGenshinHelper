@@ -56,20 +56,32 @@ for i in range(0,30):
         print("抢位 or 登入成功！")
         time.sleep(1)
         try:
-            req2 = httpx.get(url=f"{api_url}wallet/wallet/get",headers=headers)
+            req2 = httpx.post(url=f"{api_url}gamer/api/onceActiveDone",headers=headers,data="")
+            data2 = req2.json()
+        except:
+            print("尝试领取新人奖励失败")
+            break
+        if data2["data"] != "":
+            msg = str(data2["data"]["sends"][0]["msg"])
+            msg.replace("%免费","{}分钟免费".format(str(data2["data"]["sends"][0]["num"])))
+            print(msg)
+        else:
+            print("已领取过新人奖励")
+        try:
+            req3 = httpx.get(url=f"{api_url}wallet/wallet/get",headers=headers)
         except:
             print("尝试签到失败")
             break
-        data2 = req2.json()
-        if data2["retcode"] == 0:
-            if int(data2["data"]["free_time"]["send_freetime"]) != 0:
+        data3 = req3.json()
+        if data3["retcode"] == 0:
+            if int(data3["data"]["free_time"]["send_freetime"]) != 0:
                 print("签到成功？已经获得{}分钟免费时长(总时长：{}分钟)".format(
-                    data2["data"]["free_time"]["send_freetime"],
-                    data2["data"]["free_time"]["free_time"]
+                    data3["data"]["free_time"]["send_freetime"],
+                    data3["data"]["free_time"]["free_time"]
                 ))
             else:
                 print("未获得免费时长，账号已经签到过了？(总时长：{}分钟)".format(
-                    data2["data"]["free_time"]["free_time"]
+                    data3["data"]["free_time"]["free_time"]
                 ))
         else:
             print("尝试签到失败")
