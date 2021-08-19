@@ -46,7 +46,7 @@ for i in range(0,30):
     if i > 15 and int(time.time()) > may_end_time:
         print("已经没机会了，凉凉 r.i.p")
         break
-    elif data["retcode"] == -100005 or -100003:
+    elif data["retcode"] == -100005 or data["retcode"] == -100003:
         time.sleep(2)
         continue
     elif int(time.time()) > may_end_time:
