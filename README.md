@@ -19,3 +19,6 @@ A:我是菜鸡
 
 ## 是否可以宣传？
 不支持，希望你可以耗子喂汁，这种脚本私下玩玩就好了
+
+## License
+[GPL-3.0 License](https://github.com/Womsxd/CloudGenshinHelper/blob/master/LICENSE)
