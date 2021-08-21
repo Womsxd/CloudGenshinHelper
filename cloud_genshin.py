@@ -7,7 +7,7 @@ def Next_time() -> int:
     next_time = now_time - now_time % 86400 + time.timezone + 39600
     if int(time.time()) > next_time:
         next_time += 14400
-    elif int(time.time()) > next_time:
+    if int(time.time()) > next_time:
         next_time += 14400
     return next_time
 
